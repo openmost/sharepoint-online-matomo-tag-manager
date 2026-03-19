@@ -42,7 +42,7 @@ param(
     [string]$SiteUrl,
 
     [Parameter(Mandatory = $true)]
-    [ValidatePattern('\/js\/container_[a-zA-Z0-9_]+\.js(\?.*)?$')]
+    [ValidatePattern('\/container_[a-zA-Z0-9_]+\.js(\?.*)?$')]
     [string]$ContainerUrl,
 
     [Parameter(Mandatory = $false)]

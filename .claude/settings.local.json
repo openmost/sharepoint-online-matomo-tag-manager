@@ -15,7 +15,11 @@
       "Bash(tr ';' '\\\\n')",
       "Bash(hash -r)",
       "Bash(npm install:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(npx gulp:*)",
+      "Bash(./node_modules/.bin/gulp bundle:*)",
+      "Bash(./node_modules/.bin/gulp package-solution:*)",
+      "Bash(ls /c/wamp64/www/sharepoint-online-matomo-tag-manager/node_modules/.bin/gulp*)"
     ]
   }
 }

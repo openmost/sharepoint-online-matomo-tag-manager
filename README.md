@@ -2,8 +2,6 @@
 
 SPFx Application Customizer that injects a **Matomo Tag Manager (MTM)** container on all modern SharePoint Online pages.
 
-Inspired by Julien Chable's [Matomo Analytics SPFx solution](https://gitlab.lsonline.fr/SharePoint/sp-dev-fx-webparts/matomo), this project replaces the classic `_paq.push` tracker with the full Matomo Tag Manager container approach.
-
 ## Features
 
 - Injects the standard MTM container snippet on every modern page
@@ -15,7 +13,7 @@ Inspired by Julien Chable's [Matomo Analytics SPFx solution](https://gitlab.lson
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) v18.x
+- [Node.js](https://nodejs.org/) v18+ (tested up to v24)
 - SharePoint Online environment
 - [PnP.PowerShell](https://pnp.github.io/powershell/) for deployment scripts
 
@@ -83,11 +81,36 @@ The extension accepts a single property via `ClientSideComponentProperties`:
 
 ## Debug
 
-Update `config/serve.json` with your SharePoint site URL, then:
+Edit `config/serve.json` to match your environment:
+
+1. Replace `pageUrl` with a real SharePoint Online page URL
+2. Replace `containerUrl` with your Matomo Tag Manager container URL
+
+```json
+{
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://your-tenant.sharepoint.com/sites/your-site/SitePages/Home.aspx",
+      "customActions": {
+        "f0e1d2c3-b4a5-4f6e-8d7c-9b0a1e2f3d4c": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "containerUrl": "https://your-matomo.example.com/js/container_XXXXXXXX.js"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Then run:
 
 ```bash
 gulp serve
 ```
+
+This opens the page with `?loadSPFX=true&debugManifestsFile=...` query parameters, loading the extension from your local dev server.
 
 ## Project Structure
 
@@ -107,7 +130,3 @@ gulp serve
 ## SPFx Version
 
 Built with **SPFx 1.20** (SharePoint Framework).
-
-## License
-
-MIT

@@ -26,7 +26,7 @@ export default class MatomoTagManagerApplicationCustomizer
     }
 
     if (!this._isValidContainerUrl(containerUrl)) {
-      Log.warn(LOG_SOURCE, `Invalid containerUrl format: "${containerUrl}". Expected URL containing /js/container_ and ending with .js`);
+      Log.warn(LOG_SOURCE, `Invalid containerUrl format: "${containerUrl}". Expected URL containing /container_xxx.js`);
       return Promise.resolve();
     }
 
@@ -43,10 +43,10 @@ export default class MatomoTagManagerApplicationCustomizer
 
   /**
    * Validates that the container URL matches the expected Matomo Tag Manager format.
-   * Must contain /js/container_ and end with .js
+   * Supports both self-hosted (/js/container_xxx.js) and Matomo Cloud CDN (container_xxx.js) URLs.
    */
   private _isValidContainerUrl(url: string): boolean {
-    return /\/js\/container_[a-zA-Z0-9_]+\.js(\?.*)?$/.test(url);
+    return /\/container_[a-zA-Z0-9_]+\.js(\?.*)?$/.test(url);
   }
 
   /**
