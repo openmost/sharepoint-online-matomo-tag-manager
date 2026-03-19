@@ -14,8 +14,8 @@
 
 .PARAMETER SiteUrl
     The SharePoint Online site URL.
-    For tenant-wide: the tenant admin URL (e.g., https://contoso-admin.sharepoint.com)
-    For site-level: the target site URL (e.g., https://contoso.sharepoint.com/sites/mysite)
+    For tenant-wide: the tenant admin URL (e.g., https://demo-admin.sharepoint.com)
+    For site-level: the target site URL (e.g., https://demo.sharepoint.com/sites/mysite)
 
 .PARAMETER ContainerUrl
     The full URL of the Matomo Tag Manager container JS file.
@@ -30,20 +30,20 @@
 .PARAMETER AppCatalogUrl
     (Tenant-wide only) URL of the App Catalog site collection.
     Required when using -TenantWide to add the entry to the Tenant Wide Extensions list.
-    Example: https://contoso.sharepoint.com/sites/appcatalog
+    Example: https://demo.sharepoint.com/sites/appcatalog
 
 .EXAMPLE
     # Tenant-wide deployment
     .\Deploy-MatomoTagManager.ps1 `
-        -SiteUrl "https://contoso-admin.sharepoint.com" `
+        -SiteUrl "https://demo-admin.sharepoint.com" `
         -ContainerUrl "https://matomo.example.com/js/container_AbCdEf12.js" `
-        -AppCatalogUrl "https://contoso.sharepoint.com/sites/appcatalog" `
+        -AppCatalogUrl "https://demo.sharepoint.com/sites/appcatalog" `
         -TenantWide
 
 .EXAMPLE
     # Site-level deployment
     .\Deploy-MatomoTagManager.ps1 `
-        -SiteUrl "https://contoso.sharepoint.com/sites/marketing" `
+        -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
         -ContainerUrl "https://matomo.example.com/js/container_AbCdEf12.js"
 #>
 

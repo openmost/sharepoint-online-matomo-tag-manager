@@ -9,7 +9,7 @@
 
 .PARAMETER SiteUrl
     The SharePoint Online site URL.
-    For tenant-wide: the tenant admin URL (e.g., https://contoso-admin.sharepoint.com)
+    For tenant-wide: the tenant admin URL (e.g., https://demo-admin.sharepoint.com)
     For site-level: the target site URL
 
 .PARAMETER TenantWide
@@ -24,14 +24,14 @@
 .EXAMPLE
     # Remove tenant-wide deployment
     .\Remove-MatomoTagManager.ps1 `
-        -SiteUrl "https://contoso-admin.sharepoint.com" `
-        -AppCatalogUrl "https://contoso.sharepoint.com/sites/appcatalog" `
+        -SiteUrl "https://demo-admin.sharepoint.com" `
+        -AppCatalogUrl "https://demo.sharepoint.com/sites/appcatalog" `
         -TenantWide -RemovePackage
 
 .EXAMPLE
     # Remove site-level deployment
     .\Remove-MatomoTagManager.ps1 `
-        -SiteUrl "https://contoso.sharepoint.com/sites/marketing" `
+        -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
         -RemovePackage
 #>
 

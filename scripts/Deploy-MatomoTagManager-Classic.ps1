@@ -13,7 +13,7 @@
     See: https://learn.microsoft.com/en-us/sharepoint/allow-or-prevent-custom-script
 
 .PARAMETER SiteUrl
-    The SharePoint Online site URL (e.g., https://contoso.sharepoint.com/sites/mysite)
+    The SharePoint Online site URL (e.g., https://demo.sharepoint.com/sites/mysite)
 
 .PARAMETER ContainerUrl
     The full URL of the Matomo Tag Manager container JS file.
@@ -25,13 +25,13 @@
 
 .EXAMPLE
     .\Deploy-MatomoTagManager-Classic.ps1 `
-        -SiteUrl "https://contoso.sharepoint.com/sites/classic-site" `
+        -SiteUrl "https://demo.sharepoint.com/sites/classic-site" `
         -ContainerUrl "https://matomo.example.com/js/container_AbCdEf12.js"
 
 .EXAMPLE
     # Web-scoped (single subsite only)
     .\Deploy-MatomoTagManager-Classic.ps1 `
-        -SiteUrl "https://contoso.sharepoint.com/sites/classic-site/subsite" `
+        -SiteUrl "https://demo.sharepoint.com/sites/classic-site/subsite" `
         -ContainerUrl "https://matomo.example.com/js/container_AbCdEf12.js" `
         -Scope Web
 #>
