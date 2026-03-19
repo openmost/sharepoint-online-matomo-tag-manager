@@ -68,6 +68,25 @@ https://matomo.example.com/js/container_XXXXXXXX.js
 
 Choose one of the following deployment methods:
 
+#### Which method should I use?
+
+| Method | Scope | Requires |
+|---|---|---|
+| **Tenant-wide** | All sites in the tenant | Tenant Admin URL + Tenant App Catalog |
+| **Site-level** | A single site collection | Site Collection App Catalog on the target site |
+| **Classic pages** | Classic pages on a single site | Custom Script allowed on the target site |
+
+**Tenant-wide is recommended** — it deploys to all sites at once via the central App Catalog that already exists on every tenant.
+
+Site-level deployment requires a **Site Collection App Catalog** on the target site. This is a local app catalog scoped to one site — it does **not** exist by default and must be created by a SharePoint admin:
+
+```powershell
+Connect-PnPOnline -Url "https://demo-admin.sharepoint.com" -Interactive -ClientId "your-client-id-here"
+Add-PnPSiteCollectionAppCatalog -Site "https://demo.sharepoint.com/sites/marketing"
+```
+
+> If you get a **403 error** on `Add-PnPApp` during site-level deployment, it means the Site Collection App Catalog has not been created on that site.
+
 #### Modern Pages - Tenant-wide
 
 ```powershell
