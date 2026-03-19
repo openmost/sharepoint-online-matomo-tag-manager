@@ -13,7 +13,7 @@ SPFx Application Customizer that injects a **Matomo Tag Manager (MTM)** containe
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) v18+ (tested up to v24)
+- [Node.js](https://nodejs.org/) v18+ (tested up to v24, but v18 recommended for production build)
 - SharePoint Online environment
 - [PnP.PowerShell](https://pnp.github.io/powershell/) for deployment scripts
 
