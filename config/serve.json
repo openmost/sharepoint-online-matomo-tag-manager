@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/spfx-serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://contoso.sharepoint.com/sites/test/SitePages/Home.aspx",
+      "customActions": {
+        "f0e1d2c3-b4a5-4f6e-8d7c-9b0a1e2f3d4c": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "containerUrl": "https://matomo.example.com/js/container_AbCdEf12.js"
+          }
+        }
+      }
+    }
+  }
+}

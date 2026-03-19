@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+lib/
+dist/
+release/
+sharepoint/solution/*.sppkg
+temp/
+
+# IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local

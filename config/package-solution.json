@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "matomo-tag-manager-client-side-solution",
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.20.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "Matomo Tag Manager container injection for SharePoint Online"
+      },
+      "longDescription": {
+        "default": "SPFx Application Customizer that injects a Matomo Tag Manager container script on all modern SharePoint Online pages"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "Matomo Tag Manager",
+        "description": "Injects the Matomo Tag Manager container script on all modern pages",
+        "id": "d5e6f7a8-b9c0-4d1e-a2f3-b4c5d6e7f8a9",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/matomo-tag-manager.sppkg"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-extension-manifest.schema.json",
+  "id": "f0e1d2c3-b4a5-4f6e-8d7c-9b0a1e2f3d4c",
+  "alias": "MatomoTagManagerApplicationCustomizer",
+  "componentType": "Extension",
+  "extensionType": "ApplicationCustomizer",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "safeWithCustomScriptDisabled": true,
+  "preconfiguredEntries": [
+    {
+      "title": {
+        "default": "Matomo Tag Manager"
+      },
+      "description": {
+        "default": "Injects Matomo Tag Manager container on SharePoint Online modern pages"
+      },
+      "officeFabricIconFontName": "AnalyticsView",
+      "properties": {
+        "containerUrl": ""
+      }
+    }
+  ]
+}

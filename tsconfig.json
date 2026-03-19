@@ -1,0 +1,22 @@
+{
+  "extends": "./node_modules/@microsoft/rush-stack-compiler-4.7/includes/tsconfig-web.json",
+  "compilerOptions": {
+    "target": "es2017",
+    "jsx": "react",
+    "rootDir": ".",
+    "outDir": "lib",
+    "strictNullChecks": false,
+    "noUnusedLocals": false,
+    "lib": [
+      "es2017",
+      "dom"
+    ]
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib"
+  ]
+}

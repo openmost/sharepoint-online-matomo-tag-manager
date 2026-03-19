@@ -1,0 +1,17 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "solutionName": "matomo-tag-manager",
+    "solutionShortDescription": "Matomo Tag Manager container injection for SharePoint Online",
+    "framework": "none",
+    "isCreatingSolution": true,
+    "packageManager": "npm",
+    "componentType": "extension",
+    "extensionType": "ApplicationCustomizer",
+    "componentName": "MatomoTagManager",
+    "componentDescription": "Injects Matomo Tag Manager container on SharePoint Online modern pages",
+    "version": "1.20.0",
+    "environment": "spo",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false
+  }
+}
