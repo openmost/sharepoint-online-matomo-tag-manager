@@ -23,6 +23,10 @@
     Where to register the Custom Action: "Site" (site collection) or "Web" (single web).
     Default: Site
 
+.PARAMETER ClientId
+    The Client ID (Application ID) of the Entra ID app registration used by PnP PowerShell.
+    Required since September 2024. See: https://pnp.github.io/powershell/articles/registerapplication.html
+
 .EXAMPLE
     .\Deploy-MatomoTagManager-Classic.ps1 `
         -SiteUrl "https://demo.sharepoint.com/sites/classic-site" `
@@ -47,7 +51,10 @@ param(
 
     [Parameter(Mandatory = $false)]
     [ValidateSet("Site", "Web")]
-    [string]$Scope = "Site"
+    [string]$Scope = "Site",
+
+    [Parameter(Mandatory = $true)]
+    [string]$ClientId
 )
 
 $ErrorActionPreference = "Stop"
@@ -80,7 +87,7 @@ if (-not (Get-Module -ListAvailable -Name PnP.PowerShell)) {
 Write-Host "=== Classic pages deployment (ScriptLink) ===" -ForegroundColor Cyan
 
 Write-Host "Connecting to site: $SiteUrl" -ForegroundColor Yellow
-Connect-PnPOnline -Url $SiteUrl -Interactive
+Connect-PnPOnline -Url $SiteUrl -Interactive -ClientId $ClientId
 
 # Remove existing action if present (idempotent)
 Write-Host "Checking for existing ScriptLink Custom Action..." -ForegroundColor Yellow

@@ -29,7 +29,7 @@ Since September 2024, PnP PowerShell requires your own [Entra ID (Azure AD) app 
 Register-PnPEntraIDAppForInteractiveLogin -ApplicationName "PnP.PowerShell" -Tenant demo.onmicrosoft.com
 ```
 
-This registers the app and prompts for admin consent automatically.
+This registers the app and prompts for admin consent automatically. Note the **Client ID** returned — you will need it for all deployment scripts.
 
 > **Note:** You need the **Application Developer** (or Global Administrator) role to create the app registration.
 
@@ -67,6 +67,7 @@ Choose one of the following deployment methods:
     -SiteUrl "https://demo-admin.sharepoint.com" `
     -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js" `
     -AppCatalogUrl "https://demo.sharepoint.com/sites/appcatalog" `
+    -ClientId "your-client-id-here" `
     -TenantWide
 ```
 
@@ -75,7 +76,8 @@ Choose one of the following deployment methods:
 ```powershell
 .\scripts\Deploy-MatomoTagManager.ps1 `
     -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
-    -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js"
+    -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js" `
+    -ClientId "your-client-id-here"
 ```
 
 #### Classic Pages (no SPFx required)
@@ -83,7 +85,8 @@ Choose one of the following deployment methods:
 ```powershell
 .\scripts\Deploy-MatomoTagManager-Classic.ps1 `
     -SiteUrl "https://demo.sharepoint.com/sites/classic-site" `
-    -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js"
+    -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js" `
+    -ClientId "your-client-id-here"
 ```
 
 > **Note:** Classic pages deployment requires [Custom Script](https://learn.microsoft.com/en-us/sharepoint/allow-or-prevent-custom-script) to be allowed on the target site.
@@ -96,6 +99,7 @@ Choose one of the following deployment methods:
 .\scripts\Remove-MatomoTagManager.ps1 `
     -SiteUrl "https://demo-admin.sharepoint.com" `
     -AppCatalogUrl "https://demo.sharepoint.com/sites/appcatalog" `
+    -ClientId "your-client-id-here" `
     -TenantWide -RemovePackage
 ```
 
@@ -104,6 +108,7 @@ Choose one of the following deployment methods:
 ```powershell
 .\scripts\Remove-MatomoTagManager.ps1 `
     -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
+    -ClientId "your-client-id-here" `
     -RemovePackage
 ```
 

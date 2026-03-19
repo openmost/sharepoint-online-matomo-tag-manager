@@ -32,6 +32,10 @@
     Required when using -TenantWide to add the entry to the Tenant Wide Extensions list.
     Example: https://demo.sharepoint.com/sites/appcatalog
 
+.PARAMETER ClientId
+    The Client ID (Application ID) of the Entra ID app registration used by PnP PowerShell.
+    Required since September 2024. See: https://pnp.github.io/powershell/articles/registerapplication.html
+
 .EXAMPLE
     # Tenant-wide deployment
     .\Deploy-MatomoTagManager.ps1 `
@@ -63,7 +67,10 @@ param(
     [string]$PackagePath = (Join-Path $PSScriptRoot "..\sharepoint\solution\matomo-tag-manager.sppkg"),
 
     [Parameter(Mandatory = $false)]
-    [string]$AppCatalogUrl
+    [string]$AppCatalogUrl,
+
+    [Parameter(Mandatory = $true)]
+    [string]$ClientId
 )
 
 $ErrorActionPreference = "Stop"
@@ -99,7 +106,7 @@ if ($TenantWide) {
 
     # Step 1 - Upload & deploy the package to the Tenant App Catalog
     Write-Host "Connecting to tenant admin: $SiteUrl" -ForegroundColor Yellow
-    Connect-PnPOnline -Url $SiteUrl -Interactive
+    Connect-PnPOnline -Url $SiteUrl -Interactive -ClientId $ClientId
 
     Write-Host "Uploading package to Tenant App Catalog..." -ForegroundColor Yellow
     $app = Add-PnPApp -Path $PackagePath -Scope Tenant -Overwrite -Publish
@@ -107,7 +114,7 @@ if ($TenantWide) {
 
     # Step 2 - Add/update entry in the Tenant Wide Extensions list
     Write-Host "Connecting to App Catalog site: $AppCatalogUrl" -ForegroundColor Yellow
-    Connect-PnPOnline -Url $AppCatalogUrl -Interactive
+    Connect-PnPOnline -Url $AppCatalogUrl -Interactive -ClientId $ClientId
 
     # Remove existing entry if present (idempotent)
     Write-Host "Checking for existing Tenant Wide Extensions entry..." -ForegroundColor Yellow
@@ -139,7 +146,7 @@ else {
     Write-Host "=== Site-level deployment ===" -ForegroundColor Cyan
 
     Write-Host "Connecting to site: $SiteUrl" -ForegroundColor Yellow
-    Connect-PnPOnline -Url $SiteUrl -Interactive
+    Connect-PnPOnline -Url $SiteUrl -Interactive -ClientId $ClientId
 
     # Step 1 - Upload & install the package to the Site Collection App Catalog
     Write-Host "Uploading package to Site Collection App Catalog..." -ForegroundColor Yellow

@@ -21,6 +21,10 @@
 .PARAMETER RemovePackage
     Also remove the .sppkg package from the App Catalog. Default: $false
 
+.PARAMETER ClientId
+    The Client ID (Application ID) of the Entra ID app registration used by PnP PowerShell.
+    Required since September 2024. See: https://pnp.github.io/powershell/articles/registerapplication.html
+
 .EXAMPLE
     # Remove tenant-wide deployment
     .\Remove-MatomoTagManager.ps1 `
@@ -47,7 +51,10 @@ param(
     [string]$AppCatalogUrl,
 
     [Parameter(Mandatory = $false)]
-    [switch]$RemovePackage
+    [switch]$RemovePackage,
+
+    [Parameter(Mandatory = $true)]
+    [string]$ClientId
 )
 
 $ErrorActionPreference = "Stop"
@@ -74,7 +81,7 @@ if ($TenantWide) {
 
     # Remove Tenant Wide Extensions entry
     Write-Host "Connecting to App Catalog site: $AppCatalogUrl" -ForegroundColor Yellow
-    Connect-PnPOnline -Url $AppCatalogUrl -Interactive
+    Connect-PnPOnline -Url $AppCatalogUrl -Interactive -ClientId $ClientId
 
     Write-Host "Looking for Tenant Wide Extensions entries..." -ForegroundColor Yellow
     $items = Get-PnPListItem -List "Tenant Wide Extensions" | Where-Object {
@@ -94,7 +101,7 @@ if ($TenantWide) {
     # Remove package from Tenant App Catalog
     if ($RemovePackage) {
         Write-Host "Connecting to tenant admin: $SiteUrl" -ForegroundColor Yellow
-        Connect-PnPOnline -Url $SiteUrl -Interactive
+        Connect-PnPOnline -Url $SiteUrl -Interactive -ClientId $ClientId
 
         Write-Host "Retracting and removing package from Tenant App Catalog..." -ForegroundColor Yellow
         $app = Get-PnPApp -Scope Tenant | Where-Object { $_.Title -eq $SolutionName }
@@ -116,7 +123,7 @@ else {
     Write-Host "=== Site-level removal ===" -ForegroundColor Cyan
 
     Write-Host "Connecting to site: $SiteUrl" -ForegroundColor Yellow
-    Connect-PnPOnline -Url $SiteUrl -Interactive
+    Connect-PnPOnline -Url $SiteUrl -Interactive -ClientId $ClientId
 
     # Remove Custom Action
     Write-Host "Looking for Custom Action..." -ForegroundColor Yellow
