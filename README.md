@@ -122,6 +122,42 @@ Then deploy:
 
 > **Note:** Classic pages deployment requires [Custom Script](https://learn.microsoft.com/en-us/sharepoint/allow-or-prevent-custom-script) to be allowed on the target site.
 
+### Troubleshooting: 403 errors
+
+If you get **403 Forbidden** errors during deployment or when running commands like `Get-PnPSiteCollectionAdmin`, check the following:
+
+1. **Entra ID app permissions**: the app registration must have **SharePoint > AllSites.FullControl** (delegated), not just Read or Write. `FullControl` is required for uploading `.sppkg` packages. Make sure admin consent has been granted (green checkmark in Azure Portal > API permissions).
+
+2. **Site Collection Admin**: the account running the script must be a Site Collection Administrator on the target site. You can verify or add yourself via:
+   ```powershell
+   Set-SPOUser -Site "https://demo.sharepoint.com/sites/mysite" -LoginName "user@demo.onmicrosoft.com" -IsSiteCollectionAdmin $true
+   ```
+
+3. **Site Collection App Catalog**: for site-level deployments, the App Catalog must be created on the target site before deploying (see step above). Propagation can take a few minutes after creation.
+
+### Troubleshooting: script blocked by Content Security Policy (CSP)
+
+If the extension is deployed and the `<script>` tag appears in the DOM but the Matomo container **does not load**, the browser is likely blocking it due to the site's Content Security Policy.
+
+Check the browser console (F12) for an error like:
+
+```
+Refused to load the script 'https://matomo.example.com/...' because it violates the following Content Security Policy directive: "script-src ..."
+```
+
+To fix this, a SharePoint admin must add your Matomo domain to the site's CSP `script-src` whitelist. In the **SharePoint Admin Center**:
+
+1. Go to **Settings > Advanced > Content Security Policy**
+2. Add your Matomo domain (e.g., `https://matomo.example.com`) to the allowed sources
+
+Or via PowerShell:
+
+```powershell
+Add-SPOContainerTypeConfiguration -ContainerTypeId default -CSPScriptSrc "https://matomo.example.com"
+```
+
+> **Note:** Without this step, the script tag will be injected but the browser will refuse to execute it.
+
 ## Remove
 
 ### Tenant-wide
