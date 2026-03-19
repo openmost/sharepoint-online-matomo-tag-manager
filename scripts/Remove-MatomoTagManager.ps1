@@ -30,12 +30,14 @@
     .\Remove-MatomoTagManager.ps1 `
         -SiteUrl "https://demo-admin.sharepoint.com" `
         -AppCatalogUrl "https://demo.sharepoint.com/sites/appcatalog" `
+        -ClientId "your-client-id-here" `
         -TenantWide -RemovePackage
 
 .EXAMPLE
     # Remove site-level deployment
     .\Remove-MatomoTagManager.ps1 `
         -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
+        -ClientId "your-client-id-here" `
         -RemovePackage
 #>
 

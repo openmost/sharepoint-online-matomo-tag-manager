@@ -30,13 +30,15 @@
 .EXAMPLE
     .\Deploy-MatomoTagManager-Classic.ps1 `
         -SiteUrl "https://demo.sharepoint.com/sites/classic-site" `
-        -ContainerUrl "https://matomo.example.com/js/container_AbCdEf12.js"
+        -ContainerUrl "https://matomo.example.com/js/container_AbCdEf12.js" `
+        -ClientId "your-client-id-here"
 
 .EXAMPLE
     # Web-scoped (single subsite only)
     .\Deploy-MatomoTagManager-Classic.ps1 `
         -SiteUrl "https://demo.sharepoint.com/sites/classic-site/subsite" `
         -ContainerUrl "https://matomo.example.com/js/container_AbCdEf12.js" `
+        -ClientId "your-client-id-here" `
         -Scope Web
 #>
 

@@ -26,12 +26,20 @@ Install-Module PnP.PowerShell -Scope CurrentUser
 Since September 2024, PnP PowerShell requires your own [Entra ID (Azure AD) app registration](https://pnp.github.io/powershell/articles/registerapplication.html).
 
 ```powershell
-Register-PnPEntraIDAppForInteractiveLogin -ApplicationName "PnP.PowerShell" -Tenant demo.onmicrosoft.com
+Register-PnPEntraIDAppForInteractiveLogin `
+    -ApplicationName "PnP.PowerShell" `
+    -Tenant demo.onmicrosoft.com `
+    -SharePointDelegatePermissions "AllSites.FullControl"
 ```
 
-This registers the app and prompts for admin consent automatically. Note the **Client ID** returned — you will need it for all deployment scripts.
+This registers the app with the required SharePoint permissions and prompts for admin consent automatically. Note the **Client ID** returned — you will need it for all deployment scripts.
 
 > **Note:** You need the **Application Developer** (or Global Administrator) role to create the app registration.
+
+If you register the app manually in the Azure Portal, make sure to:
+
+1. Add the API permission **SharePoint > AllSites.FullControl** (delegated) and grant admin consent
+2. Add the platform **Mobile and desktop applications** with redirect URI `http://localhost`
 
 ### 3. Build the package
 
