@@ -4,25 +4,26 @@ SPFx Application Customizer that injects a **Matomo Tag Manager (MTM)** containe
 
 ## Features
 
-- Injects the standard MTM container snippet on every modern page
-- Single `containerUrl` parameter (full URL to the container JS file)
-- URL format validation (`/container_*.js` — supports both self-hosted and Matomo Cloud CDN)
-- SPA-safe: prevents double injection during SharePoint client-side navigation
-- `skipFeatureDeployment: true` for tenant-wide deployment
-- PowerShell scripts for deployment, removal, and classic pages support
+- Injects the standard MTM container snippet on every modern SharePoint Online page
+- Supports classic pages via a separate ScriptLink deployment (no SPFx required)
+- SPA-safe: prevents double injection during client-side navigation
+- URL validation: only accepts valid Matomo container URLs (`/container_*.js`)
+- Tenant-wide or site-level deployment via PnP PowerShell scripts
 
-## Prerequisites
+## Getting Started
+
+### 1. Install prerequisites
 
 - [Node.js](https://nodejs.org/) v18+ (tested up to v24, but v18 recommended for production build)
-- SharePoint Online environment
-- [PnP.PowerShell](https://pnp.github.io/powershell/) for deployment scripts
-- An **Entra ID (Azure AD) app registration** — required since September 2024 for PnP PowerShell (see below)
+- [PnP.PowerShell](https://pnp.github.io/powershell/) for deployment scripts:
 
-### Entra ID App Registration
+```powershell
+Install-Module PnP.PowerShell -Scope CurrentUser
+```
 
-PnP PowerShell no longer ships with a default app registration. You must [register your own Entra ID application](https://pnp.github.io/powershell/articles/registerapplication.html) before running the deployment scripts.
+### 2. Register an Entra ID application
 
-**Quick setup (interactive login):**
+Since September 2024, PnP PowerShell requires your own [Entra ID (Azure AD) app registration](https://pnp.github.io/powershell/articles/registerapplication.html).
 
 ```powershell
 Register-PnPEntraIDAppForInteractiveLogin -ApplicationName "PnP.PowerShell" -Tenant demo.onmicrosoft.com
@@ -32,7 +33,7 @@ This registers the app and prompts for admin consent automatically.
 
 > **Note:** You need the **Application Developer** (or Global Administrator) role to create the app registration.
 
-## Build
+### 3. Build the package
 
 ```bash
 npm install
@@ -41,7 +42,15 @@ npm run package
 
 This produces `sharepoint/solution/matomo-tag-manager.sppkg`.
 
-## Deploy
+### 4. Get your Matomo container URL
+
+In your Matomo instance, go to **Tag Manager > Container > Install Code** and copy the container URL. It looks like:
+
+```
+https://matomo.example.com/js/container_XXXXXXXX.js
+```
+
+### 5. Deploy
 
 > **Tip:** If PowerShell blocks script execution, you can bypass the policy for the current session:
 >
@@ -49,7 +58,9 @@ This produces `sharepoint/solution/matomo-tag-manager.sppkg`.
 > Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 > ```
 
-### Modern Pages - Tenant-wide
+Choose one of the following deployment methods:
+
+#### Modern Pages - Tenant-wide
 
 ```powershell
 .\scripts\Deploy-MatomoTagManager.ps1 `
@@ -59,7 +70,7 @@ This produces `sharepoint/solution/matomo-tag-manager.sppkg`.
     -TenantWide
 ```
 
-### Modern Pages - Site-level
+#### Modern Pages - Site-level
 
 ```powershell
 .\scripts\Deploy-MatomoTagManager.ps1 `
@@ -67,7 +78,7 @@ This produces `sharepoint/solution/matomo-tag-manager.sppkg`.
     -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js"
 ```
 
-### Classic Pages (no SPFx required)
+#### Classic Pages (no SPFx required)
 
 ```powershell
 .\scripts\Deploy-MatomoTagManager-Classic.ps1 `
@@ -79,14 +90,18 @@ This produces `sharepoint/solution/matomo-tag-manager.sppkg`.
 
 ## Remove
 
+### Tenant-wide
+
 ```powershell
-# Tenant-wide
 .\scripts\Remove-MatomoTagManager.ps1 `
     -SiteUrl "https://demo-admin.sharepoint.com" `
     -AppCatalogUrl "https://demo.sharepoint.com/sites/appcatalog" `
     -TenantWide -RemovePackage
+```
 
-# Site-level
+### Site-level
+
+```powershell
 .\scripts\Remove-MatomoTagManager.ps1 `
     -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
     -RemovePackage
