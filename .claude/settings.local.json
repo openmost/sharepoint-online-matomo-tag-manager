@@ -21,7 +21,8 @@
       "Bash(./node_modules/.bin/gulp package-solution:*)",
       "Bash(ls /c/wamp64/www/sharepoint-online-matomo-tag-manager/node_modules/.bin/gulp*)",
       "Bash(npm -v)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(python3:*)"
     ]
   }
 }

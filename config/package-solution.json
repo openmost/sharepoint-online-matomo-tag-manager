@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
     "name": "matomo-tag-manager-client-side-solution",
-    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+    "id": "7689237b-cfd1-45bb-b68d-3e9765507560",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
@@ -29,7 +29,7 @@
       {
         "title": "Matomo Tag Manager",
         "description": "Injects the Matomo Tag Manager container script on all modern pages",
-        "id": "d5e6f7a8-b9c0-4d1e-a2f3-b4c5d6e7f8a9",
+        "id": "9ab9c188-ea7a-43f1-a119-70a3184bdaac",
         "version": "1.0.0.0"
       }
     ]

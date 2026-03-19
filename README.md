@@ -28,6 +28,12 @@ This produces `sharepoint/solution/matomo-tag-manager.sppkg`.
 
 ## Deploy
 
+> **Tip:** If PowerShell blocks script execution, you can bypass the policy for the current session:
+>
+> ```powershell
+> Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+> ```
+
 ### Modern Pages - Tenant-wide
 
 ```powershell
