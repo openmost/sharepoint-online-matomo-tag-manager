@@ -6,7 +6,7 @@ SPFx Application Customizer that injects a **Matomo Tag Manager (MTM)** containe
 
 - Injects the standard MTM container snippet on every modern page
 - Single `containerUrl` parameter (full URL to the container JS file)
-- URL format validation (`/js/container_*.js`)
+- URL format validation (`/container_*.js` — supports both self-hosted and Matomo Cloud CDN)
 - SPA-safe: prevents double injection during SharePoint client-side navigation
 - `skipFeatureDeployment: true` for tenant-wide deployment
 - PowerShell scripts for deployment, removal, and classic pages support

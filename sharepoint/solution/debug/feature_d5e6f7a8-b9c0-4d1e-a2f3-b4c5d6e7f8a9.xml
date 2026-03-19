@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?><Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="Matomo Tag Manager" Description="Injects the Matomo Tag Manager container script on all modern pages" Id="d5e6f7a8-b9c0-4d1e-a2f3-b4c5d6e7f8a9" Version="1.0.0.0" Scope="Web" Hidden="FALSE"></Feature>

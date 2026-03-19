@@ -4,9 +4,12 @@ node_modules/
 # Build output
 lib/
 dist/
-release/
-sharepoint/solution/*.sppkg
 temp/
+release/
+sharepoint/solution/debug/
+
+# Package (rebuild with: npm run package)
+sharepoint/solution/*.sppkg
 
 # IDE
 .idea/
