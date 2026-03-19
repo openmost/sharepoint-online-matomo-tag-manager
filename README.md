@@ -16,6 +16,21 @@ SPFx Application Customizer that injects a **Matomo Tag Manager (MTM)** containe
 - [Node.js](https://nodejs.org/) v18+ (tested up to v24, but v18 recommended for production build)
 - SharePoint Online environment
 - [PnP.PowerShell](https://pnp.github.io/powershell/) for deployment scripts
+- An **Entra ID (Azure AD) app registration** — required since September 2024 for PnP PowerShell (see below)
+
+### Entra ID App Registration
+
+PnP PowerShell no longer ships with a default app registration. You must [register your own Entra ID application](https://pnp.github.io/powershell/articles/registerapplication.html) before running the deployment scripts.
+
+**Quick setup (interactive login):**
+
+```powershell
+Register-PnPEntraIDAppForInteractiveLogin -ApplicationName "PnP.PowerShell" -Tenant demo.onmicrosoft.com
+```
+
+This registers the app and prompts for admin consent automatically.
+
+> **Note:** You need the **Application Developer** (or Global Administrator) role to create the app registration.
 
 ## Build
 

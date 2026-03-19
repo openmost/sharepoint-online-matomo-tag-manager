@@ -22,7 +22,8 @@
       "Bash(ls /c/wamp64/www/sharepoint-online-matomo-tag-manager/node_modules/.bin/gulp*)",
       "Bash(npm -v)",
       "Bash(cd:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "WebFetch(domain:pnp.github.io)"
     ]
   }
 }
