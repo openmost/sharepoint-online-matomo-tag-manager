@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nvm list:*)",
+      "Bash(nvm ls:*)",
+      "Bash(fnm list:*)",
+      "Bash(nvm install:*)",
+      "Bash(nvm use:*)",
+      "Bash(npm --version)",
+      "Bash(export PATH=\"/c/Program Files/nodejs:$PATH\")",
+      "Bash(/c/nvm4w/nodejs/node --version)",
+      "Read(//c/nvm4w//**)",
+      "Bash(\"/c/Program Files/nodejs/node\" --version)",
+      "Bash(echo $PATH)",
+      "Bash(tr ';' '\\\\n')",
+      "Bash(hash -r)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

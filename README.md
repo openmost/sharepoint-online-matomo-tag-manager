@@ -34,9 +34,9 @@ This produces `sharepoint/solution/matomo-tag-manager.sppkg`.
 
 ```powershell
 .\scripts\Deploy-MatomoTagManager.ps1 `
-    -SiteUrl "https://contoso-admin.sharepoint.com" `
-    -ContainerUrl "https://matomo.example.com/js/container_AbCdEf12.js" `
-    -AppCatalogUrl "https://contoso.sharepoint.com/sites/appcatalog" `
+    -SiteUrl "https://demo-admin.sharepoint.com" `
+    -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js" `
+    -AppCatalogUrl "https://demo.sharepoint.com/sites/appcatalog" `
     -TenantWide
 ```
 
@@ -44,16 +44,16 @@ This produces `sharepoint/solution/matomo-tag-manager.sppkg`.
 
 ```powershell
 .\scripts\Deploy-MatomoTagManager.ps1 `
-    -SiteUrl "https://contoso.sharepoint.com/sites/marketing" `
-    -ContainerUrl "https://matomo.example.com/js/container_AbCdEf12.js"
+    -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
+    -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js"
 ```
 
 ### Classic Pages (no SPFx required)
 
 ```powershell
 .\scripts\Deploy-MatomoTagManager-Classic.ps1 `
-    -SiteUrl "https://contoso.sharepoint.com/sites/classic-site" `
-    -ContainerUrl "https://matomo.example.com/js/container_AbCdEf12.js"
+    -SiteUrl "https://demo.sharepoint.com/sites/classic-site" `
+    -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js"
 ```
 
 > **Note:** Classic pages deployment requires [Custom Script](https://learn.microsoft.com/en-us/sharepoint/allow-or-prevent-custom-script) to be allowed on the target site.
@@ -63,13 +63,13 @@ This produces `sharepoint/solution/matomo-tag-manager.sppkg`.
 ```powershell
 # Tenant-wide
 .\scripts\Remove-MatomoTagManager.ps1 `
-    -SiteUrl "https://contoso-admin.sharepoint.com" `
-    -AppCatalogUrl "https://contoso.sharepoint.com/sites/appcatalog" `
+    -SiteUrl "https://demo-admin.sharepoint.com" `
+    -AppCatalogUrl "https://demo.sharepoint.com/sites/appcatalog" `
     -TenantWide -RemovePackage
 
 # Site-level
 .\scripts\Remove-MatomoTagManager.ps1 `
-    -SiteUrl "https://contoso.sharepoint.com/sites/marketing" `
+    -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
     -RemovePackage
 ```
 
@@ -77,9 +77,9 @@ This produces `sharepoint/solution/matomo-tag-manager.sppkg`.
 
 The extension accepts a single property via `ClientSideComponentProperties`:
 
-| Property       | Type   | Description                                                         |
-|----------------|--------|---------------------------------------------------------------------|
-| `containerUrl` | string | Full URL to the MTM container JS (e.g., `https://matomo.example.com/js/container_AbCdEf12.js`) |
+| Property       | Type   | Description                                                                                    |
+|----------------|--------|------------------------------------------------------------------------------------------------|
+| `containerUrl` | string | Full URL to the MTM container JS (e.g., `https://matomo.example.com/js/container_XXXXXXXX.js`) |
 
 ## Debug
 

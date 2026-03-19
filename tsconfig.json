@@ -2,8 +2,9 @@
   "extends": "./node_modules/@microsoft/rush-stack-compiler-4.7/includes/tsconfig-web.json",
   "compilerOptions": {
     "target": "es2017",
-    "rootDir": ".",
+    "rootDir": "src",
     "outDir": "lib",
+    "skipLibCheck": true,
     "strictNullChecks": false,
     "noUnusedLocals": false,
     "lib": [
