@@ -86,7 +86,7 @@ Site-level deployment requires a **Site Collection App Catalog** on the target s
 
 ```powershell
 Connect-PnPOnline -Url "https://demo-admin.sharepoint.com" -Interactive -ClientId "your-client-id-here"
-Add-PnPSiteCollectionAppCatalog -Site "https://demo.sharepoint.com/sites/marketing"
+Add-PnPSiteCollectionAppCatalog -Site "https://demo.sharepoint.com/sites/your-site"
 ```
 
 > If you get a **403 error** on `Add-PnPApp`, it means the Site Collection App Catalog has not been created on that site.
@@ -95,7 +95,7 @@ Then deploy:
 
 ```powershell
 .\scripts\Deploy-MatomoTagManager.ps1 `
-    -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
+    -SiteUrl "https://demo.sharepoint.com/sites/your-site" `
     -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js" `
     -ClientId "your-client-id-here"
 ```
@@ -174,7 +174,7 @@ Add-SPOContainerTypeConfiguration -ContainerTypeId default -CSPScriptSrc "https:
 
 ```powershell
 .\scripts\Remove-MatomoTagManager.ps1 `
-    -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
+    -SiteUrl "https://demo.sharepoint.com/sites/your-site" `
     -ClientId "your-client-id-here" `
     -RemovePackage
 ```

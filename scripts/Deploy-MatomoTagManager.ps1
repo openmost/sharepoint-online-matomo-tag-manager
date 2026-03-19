@@ -48,7 +48,7 @@
 .EXAMPLE
     # Site-level deployment
     .\Deploy-MatomoTagManager.ps1 `
-        -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
+        -SiteUrl "https://demo.sharepoint.com/sites/your-site" `
         -ContainerUrl "https://matomo.example.com/js/container_AbCdEf12.js" `
         -ClientId "your-client-id-here"
 #>

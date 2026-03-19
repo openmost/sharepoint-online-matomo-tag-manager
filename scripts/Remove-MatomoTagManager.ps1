@@ -36,7 +36,7 @@
 .EXAMPLE
     # Remove site-level deployment
     .\Remove-MatomoTagManager.ps1 `
-        -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
+        -SiteUrl "https://demo.sharepoint.com/sites/your-site" `
         -ClientId "your-client-id-here" `
         -RemovePackage
 #>
