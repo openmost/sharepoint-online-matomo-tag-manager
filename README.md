@@ -70,13 +70,17 @@ Choose one of the following deployment methods:
 
 #### Which method should I use?
 
-| Method | Scope | Requires |
-|---|---|---|
-| **Tenant-wide** | All sites in the tenant | Tenant Admin URL + Tenant App Catalog |
-| **Site-level** | A single site collection | Site Collection App Catalog on the target site |
-| **Classic pages** | Classic pages on a single site | Custom Script allowed on the target site |
+| Method | Scope | Container | Requires |
+|---|---|---|---|
+| **Site-level** | A single site collection | One container per site | Site Collection App Catalog on the target site |
+| **Tenant-wide** | All sites in the tenant | Same container everywhere | Tenant Admin URL + Tenant App Catalog |
+| **Classic pages** | Classic pages on a single site | One container per site | Custom Script allowed on the target site |
 
-**Tenant-wide is recommended** — it deploys to all sites at once via the central App Catalog that already exists on every tenant.
+**Site-level is recommended** — it allows a different Matomo container per site, so each site has its own tracking configuration.
+
+Tenant-wide deploys the **same container URL on all sites** of the tenant. Use it only if you want a single Matomo container for everything.
+
+#### Modern Pages - Site-level (recommended)
 
 Site-level deployment requires a **Site Collection App Catalog** on the target site. This is a local app catalog scoped to one site — it does **not** exist by default and must be created by a SharePoint admin:
 
@@ -85,7 +89,16 @@ Connect-PnPOnline -Url "https://demo-admin.sharepoint.com" -Interactive -ClientI
 Add-PnPSiteCollectionAppCatalog -Site "https://demo.sharepoint.com/sites/marketing"
 ```
 
-> If you get a **403 error** on `Add-PnPApp` during site-level deployment, it means the Site Collection App Catalog has not been created on that site.
+> If you get a **403 error** on `Add-PnPApp`, it means the Site Collection App Catalog has not been created on that site.
+
+Then deploy:
+
+```powershell
+.\scripts\Deploy-MatomoTagManager.ps1 `
+    -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
+    -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js" `
+    -ClientId "your-client-id-here"
+```
 
 #### Modern Pages - Tenant-wide
 
@@ -96,15 +109,6 @@ Add-PnPSiteCollectionAppCatalog -Site "https://demo.sharepoint.com/sites/marketi
     -AppCatalogUrl "https://demo.sharepoint.com/sites/appcatalog" `
     -ClientId "your-client-id-here" `
     -TenantWide
-```
-
-#### Modern Pages - Site-level
-
-```powershell
-.\scripts\Deploy-MatomoTagManager.ps1 `
-    -SiteUrl "https://demo.sharepoint.com/sites/marketing" `
-    -ContainerUrl "https://matomo.example.com/js/container_XXXXXXXX.js" `
-    -ClientId "your-client-id-here"
 ```
 
 #### Classic Pages (no SPFx required)
